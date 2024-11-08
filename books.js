@@ -173,3 +173,5 @@ let books = [
       ]
     }
   ]
+
+let likedBooks = [];

@@ -9,6 +9,7 @@
     <script src="script.js"></script>
     <script src="bookTemplate.js"></script>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="standard.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -16,15 +17,22 @@
         rel="stylesheet">
 </head>
 
-<body onload="render()">
+<body onload="render(true)">
     <div class="full-content">
         <header>
-            <h1>DABookstore - get yout book here</h1>
+            <h1>DABookstore - get your book here</h1>
         </header>
 
         <div class="main-content">
+            <div class="navigation">
+                <p id="navigation_text">Show favorite books only</p>
+                <label class="switch">
+                    <input id="liked_books_checkbox" type="checkbox" unchecked onclick="toggleLikedBooks()">
+                    <span class="slider round"></span>
+                </label>
+            </div>
             <div id="book_shelf">
-                <!--books to get renderd in script.js-->
+                <!--books to be renderd in script.js-->
             </div>
         </div>
     </div>
