@@ -1,19 +1,12 @@
-let showAllBooks = true;
-
-function render(allBooks){
+function render() {
     let bookShelf = document.getElementById('book_shelf');
     bookShelf.innerHTML = "";
-    for (let index = 0; index<books.length; index++){
-        if (allBooks){
-            getBookTemplate(index, books);
-            showAllBooks = false;
-        } else {
-            if (books[index].liked == true){
-                getBookTemplate(index, books);
-            }
-            showAllBooks = true;
-        } 
+    for (let index = 0; index < books.length; index++) {
+
+        getBookTemplate(index, books);
+        showAllBooks = false;
     }
+    document.getElementById("liked_books_checkbox").setAttribute("onclick", "renderLikedBooksOnly()")
 }
 
 function getComments(indexBook) {
@@ -27,26 +20,26 @@ function getComments(indexBook) {
             </tr>`;
 }
 
-function styledBookPrice(indexBook){
+function styledBookPrice(indexBook) {
     let bookPrice = books[indexBook].price.toFixed(2);
     bookPrice = "" + bookPrice;
     bookPrice = bookPrice.replace('.', ',');
     return bookPrice;
 }
 
-function isLiked(indexBook){
-    if (books[indexBook].liked){
+function isLiked(indexBook) {
+    if (books[indexBook].liked) {
         document.getElementById(`book_like_btn_img_${indexBook}`).src = "./img/herz.png";
     } else {
         document.getElementById(`book_like_btn_img_${indexBook}`).src = "./img/herz_weiss.png";
     }
 }
 
-function toggleLike(indexBook){
+function toggleLike(indexBook) {
     let numberLikes = books[indexBook].likes;
     let isLiked = books[indexBook].liked;
     let likeImg = document.getElementById(`book_like_btn_img_${indexBook}`);
-    if (books[indexBook].liked){
+    if (books[indexBook].liked) {
         numberLikes--;
         isLiked = false;
         likeImg.src = "./img/herz_weiss.png";
@@ -62,15 +55,15 @@ function toggleLike(indexBook){
     reloadLikedBooks();
 }
 
-function updateLikeNumber(indexBook, number){
+function updateLikeNumber(indexBook, number) {
     document.getElementById(`book_num_likes_${indexBook}`).innerHTML = books[indexBook].likes + number;
 }
 
-function addComment(indexBook){
+function addComment(indexBook) {
     let commentInput = document.getElementById(`comment_input_${indexBook}`)
     let commentValue = commentInput.value;
     let valueObj = {
-        "name": "Michi", 
+        "name": "Michi",
         "comment": commentValue,
     }
     books[indexBook].comments.unshift(valueObj);
@@ -78,16 +71,20 @@ function addComment(indexBook){
     commentInput.value = "";
 }
 
-function toggleLikedBooks(){
-    if (showAllBooks){
-        render(true);
-    } else {
-        render(false);  
+function reloadLikedBooks() {
+    if(document.getElementById("liked_books_checkbox").checked){
+        renderLikedBooksOnly();
     }
+    
 }
 
-function reloadLikedBooks(){
-    if(showAllBooks){
-        render(false);
+function renderLikedBooksOnly() {
+    let bookShelf = document.getElementById('book_shelf');
+    bookShelf.innerHTML = "";
+    for (let index = 0; index < books.length; index++) {
+        if (books[index].liked == true) {
+            getBookTemplate(index);
+        }
     }
+    document.getElementById("liked_books_checkbox").setAttribute("onclick", "render()")
 }
