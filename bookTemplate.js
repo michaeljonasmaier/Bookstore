@@ -1,7 +1,6 @@
 function getBookTemplate(indexBook) {
     let bookShelf = document.getElementById('book_shelf');
-    let bookPrice = "" + books[indexBook].price;
-    bookPrice = bookPrice.replace('.', ',');
+    let bookPrice = styledBookPrice(indexBook);
 
     bookShelf.innerHTML += /*html*/`<div id="book_item">
     <div id="book_title">
@@ -15,7 +14,7 @@ function getBookTemplate(indexBook) {
             <p id="book_price">${bookPrice + ' €'}</p>
             <div id="book_like_div">
                 <p id="book_num_likes">${books[indexBook].likes}</p>
-                <button id="book_like_btn" onclick="toggleLike(indexBook)"><img src="./img/herz.png" alt=""></button>
+                <button id="book_like_btn" onclick="toggleLike(${indexBook})"><img id="book_like_btn_img_${indexBook}" src="./img/herz.png" alt=""></button>
             </div>
         </div>
         <div id="book_info">
@@ -70,3 +69,26 @@ function getComments(indexBook) {
                 <td id="comment">${books[indexBook].comments[commentNr].comment}</td>
             </tr>`;
 }
+
+function styledBookPrice(indexBook){
+    let bookPrice = books[indexBook].price.toFixed(2);
+    bookPrice = "" + bookPrice;
+    bookPrice = bookPrice.replace('.', ',');
+    return bookPrice;
+}
+
+function toggleLike(indexBook){
+    let numberLikes = books[indexBook].likes;
+    let isLiked = books[indexBook].liked;
+    if (books[indexBook].liked){
+        numberLikes--;
+        isLiked = false;
+        document.getElementById()
+    } else {
+        numberLikes++;
+        isLiked = true;
+    }
+    books[indexBook].likes = numberLikes;
+    books[indexBook].liked = isLiked;
+}
+
