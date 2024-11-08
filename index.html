@@ -16,80 +16,15 @@
         rel="stylesheet">
 </head>
 
-<body>
+<body onload="render()">
     <div class="full-content">
         <header>
             <h1>DABookstore - get yout book here</h1>
         </header>
 
         <div class="main-content">
-            <div id="book_item">
-                <div id="book_title">
-                    <h2>Die Geheimnisse des Ozeans</h2>
-                </div>
-                <div id="book_img">
-                    <img src="./img/buch.png" alt="Book Cover">
-                </div>
-                <div id="book_info_div" class="pd">
-                    <div id="book_price_and_likes">
-                        <p id="book_price">19,99€</p>
-                        <div id="book_like_div">
-                            <p id="book_num_likes">1250</p>
-                            <button id="book_like_btn"><img src="./img/herz.png" alt=""></button>
-                        </div>
-                    </div>
-                    <div id="book_info">
-                        <table>
-                            <tbody>
-                                <tr>
-                                    <td>Author</td>
-                                    <td id="book_author">Clara Meer</td>
-                                </tr>
-                                <tr>
-                                    <td>Erscheinungsjahr</td>
-                                    <td id="book_year">2018</td>
-                                </tr>
-                                <tr>
-                                    <td>Genre</td>
-                                    <td id="book_genre">Fantasy</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <div id="comments" class="pd">
-                    <h3>Kommentare:</h3>
-                    <div id="comment_table_div">
-                        <table id="comment_table">
-                            <tbody>
-                                <tr>
-                                    <td id="comment_author">Leser123</td>
-                                    <td id="comment">Ein fesselndes Abenteuer, das mich von Anfang bis Ende
-                                        mitgerissen hat.</td>
-                                </tr>
-                                <tr>
-                                    <td id="comment_author">Bookworm92</td>
-                                    <td id="comment">Ein faszinierendes Buch, das mich von der ersten Seite an gefesselt
-                                        hat.</td>
-                                </tr>
-                                <tr>
-                                    <td id="comment_author">Bookworm92</td>
-                                    <td id="comment">Die Fantasiewelt war so lebendig, ich konnte das Buch kaum aus der
-                                        Hand legen.</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div id="write_comment_div">
-                        <input id="comment_input" type="text" placeholder="Schreibe einen Kommentar...">
-                        <button id="comment_btn" onclick="sendComment()"><img id="btn_img" src="./img/papierflieger.png"
-                                alt="Senden Button"></button>
-                    </div>
-
-                </div>
-
-
+            <div id="book_shelf">
+                <!--books to get renderd in script.js-->
             </div>
         </div>
     </div>

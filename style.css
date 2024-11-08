@@ -13,6 +13,7 @@ body {
 header {
     background-color: #082029;
     padding: 10px 100px 10px 100px;
+    text-align: center;
 }
 
 h2 {
@@ -32,6 +33,12 @@ h3{
 
 .pd {
     padding: 20px 15px 20px 15px;
+}
+
+#book_shelf{
+    display: flex;
+    gap: 50px;
+    flex-wrap: wrap;
 }
 
 #book_item {
