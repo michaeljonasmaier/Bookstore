@@ -1,23 +1,16 @@
+function init() {
+    getFromLocalStorage();
+}
+
 function render() {
     let bookShelf = document.getElementById('book_shelf');
     bookShelf.innerHTML = "";
     for (let index = 0; index < books.length; index++) {
-
-        getBookTemplate(index, books);
-        showAllBooks = false;
+        getBookTemplate(index,);
     }
-    document.getElementById("liked_books_checkbox").setAttribute("onclick", "renderLikedBooksOnly()")
-}
 
-function getComments(indexBook) {
-    let commentTableBody = document.getElementById(`comment_table_body_${indexBook}`);
-    commentTableBody.innerHTML = "";
-    for (let commentNr = 0; commentNr < books[indexBook].comments.length; commentNr++)
-        commentTableBody.innerHTML += /*html*/ `
-            <tr>
-                <td id="comment_author">[${books[indexBook].comments[commentNr].name}]</td>
-                <td id="comment">${books[indexBook].comments[commentNr].comment}</td>
-            </tr>`;
+    showAllBooks = false;
+    document.getElementById("liked_books_checkbox").setAttribute("onclick", "renderLikedBooksOnly()")
 }
 
 function styledBookPrice(indexBook) {
@@ -53,6 +46,7 @@ function toggleLike(indexBook) {
     books[indexBook].likes = numberLikes;
     books[indexBook].liked = isLiked;
     reloadLikedBooks();
+    safeToLocalStorage();
 }
 
 function updateLikeNumber(indexBook, number) {
@@ -69,16 +63,18 @@ function addComment(indexBook) {
     books[indexBook].comments.unshift(valueObj);
     getComments(indexBook, books);
     commentInput.value = "";
+    safeToLocalStorage();
 }
 
 function reloadLikedBooks() {
-    if(document.getElementById("liked_books_checkbox").checked){
+    if (document.getElementById("liked_books_checkbox").checked) {
         renderLikedBooksOnly();
     }
-    
+
 }
 
 function renderLikedBooksOnly() {
+    console.log("sinddrin")
     let bookShelf = document.getElementById('book_shelf');
     bookShelf.innerHTML = "";
     for (let index = 0; index < books.length; index++) {
@@ -87,4 +83,87 @@ function renderLikedBooksOnly() {
         }
     }
     document.getElementById("liked_books_checkbox").setAttribute("onclick", "render()")
+}
+
+function safeToLocalStorage() {
+    localStorage.setItem("books", JSON.stringify(books));
+}
+
+function getFromLocalStorage() {
+    let bookArray = JSON.parse(localStorage.getItem("books"));
+
+    if (bookArray != null) {
+        books = bookArray;
+    }
+}
+
+function addBook(){
+    //document.getElementById("#warning").classList.remove("showMsg");
+    //document.getElementById("#adding_complete").classList.remove("showMsg");
+
+    let newTitle = document.getElementById("name_input").value;
+    let newAuthor = document.getElementById("author_input").value;
+    let newYear = document.getElementById("year_input").value;
+    let newGenre = document.getElementById("genre_input").value;
+    let newPrice = document.getElementById("price_input").value;
+    let newComment = document.getElementById("comment_input").value;
+
+    if(newTitle == "" || newAuthor == ""){
+        document.getElementById("warning").classList.add("showMsg");
+    } else {   
+        document.getElementById("warning").classList.remove("showMsg");
+        addBookToArray(newTitle, newAuthor, newYear, newGenre, newPrice, newComment)
+        document.getElementById("adding_complete").classList.add("showMsg");
+    }
+    
+}
+
+function addBookToArray(newTitle, newAuthor, newYear, newGenre, newPrice, newComment){
+    let newBookObj = {
+        "name": newTitle,
+        "author": newAuthor,
+        "likes": 0,
+        "liked": false,
+        "price": parseFloat(newPrice),
+        "publishedYear": parseInt(newYear),
+        "genre": newGenre,
+        "comments": [
+          {
+            "name": "",
+            "comment": ""
+          }
+        ]
+      }
+
+      if(newComment != ''){
+        newBookObj.comments[0].name = "Michi";
+        newBookObj.comments[0].comment = newComment;
+      }
+
+    books.unshift(newBookObj);
+}
+
+function openDialog() {
+    document.getElementById("dialog").showModal();
+}
+
+function closeDialog() {
+    clearDialog()
+    document.getElementById("dialog").close();
+    render();
+}
+
+function bubblingProtection(event){
+    event.stopPropagation();
+}
+
+function clearDialog(){
+    document.getElementById("warning").classList.remove("showMsg");
+    document.getElementById("adding_complete").classList.remove("showMsg");
+    document.getElementById("name_input").value = "";
+    document.getElementById("author_input").value = "";
+    document.getElementById("year_input").value = "";
+    document.getElementById("genre_input").value = "";
+    document.getElementById("price_input").value = "";
+    document.getElementById("comment_input").value = "";
 }

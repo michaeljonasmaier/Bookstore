@@ -10,6 +10,7 @@
     <script src="bookTemplate.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="standard.css">
+    <link rel="stylesheet" href="dialog_style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
@@ -17,7 +18,7 @@
         rel="stylesheet">
 </head>
 
-<body onload="render(true)">
+<body onload="init(), render()" onclick="closeDialog()">
     <div class="full-content">
         <header>
             <h1>DABookstore - get your book here!</h1>
@@ -25,15 +26,60 @@
 
         <div class="main-content">
             <div class="navigation">
+                <p id="navigation_text">Add book</p>
+                <button onclick="openDialog(), bubblingProtection(event)"><img id="plus_btn" src="./img/plus.png"
+                        alt=""></button>
                 <p id="navigation_text">Show favorite books only</p>
-                <label class="switch">
-                    <input id="liked_books_checkbox" type="checkbox" unchecked onclick="renderLikedBooksOnly()">
+                <label class="switch" onclick="bubblingProtection(event)" >
+                    <input id="liked_books_checkbox" type="checkbox" unchecked onclick="renderLikedBooksOnly()" >
                     <span class="slider round"></span>
                 </label>
+
             </div>
             <div id="book_shelf">
                 <!--books to be renderd in script.js-->
             </div>
+
+            <dialog id="dialog">
+                <div class="dialog-full-content" onclick="bubblingProtection(event)">
+                    <div class="dialog-header">
+                        <h2>Add a new book!</h2>
+                        <p id="dialog_close_icon" onclick="closeDialog()">X</p>
+                    </div>
+                    <div class="dialog-content">
+                        <div class="dialog-input">
+                            <p>Titel</p>
+                            <input id="name_input" type="text" placeholder="Titel">
+                        </div>
+                        <div class="dialog-input">
+                            <p>Autor</p>
+                            <input id="author_input" type="text" placeholder="Max Mustermann">
+                        </div>
+                        <div class="dialog-input">
+                            <p>Erscheinungsjahr</p>
+                            <input id="year_input" type="number" min="1200" max="2024" step="1" value="2024">
+                        </div>
+                        <div class="dialog-input">
+                            <p>Genre</p>
+                            <input id="genre_input" type="text" placeholder="Genre">
+                        </div>
+                        <div class="dialog-input">
+                            <p>Preis</p>
+                            <input id="price_input" type="number" min="0">
+                        </div>
+                        <div class="dialog-input">
+                            <p>Kommentar</p>
+                            <textarea id="comment_input" placeholder="Schreibe einen Kommentar..." rows="4"></textarea>
+                        </div>
+                        <div class="add-btn-div"><button id="add_btn"  onclick="addBook()">Add book</button></div>
+                    </div>
+
+                    <div class="dialog_msg">
+                        <p id="warning" class="d-none">Bitte gib einen Titel und einen Autor/eine Autorin ein.</p>
+                        <p id="adding_complete" class="d-none">Das Buch wurde erfolgreich hinzugefügt.</p>
+                    </div>
+                </div>
+            </dialog>
         </div>
     </div>
 </body>

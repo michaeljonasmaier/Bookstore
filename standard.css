@@ -83,3 +83,53 @@ input:checked+.slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
+
+button{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+/*-------------------------------------------------------------------- RESPONSIVENESS------------------------------------------------------------------------------- */
+
+@media(max-width: 720px){
+    h1{
+        font-size: 24px;
+    }
+
+    h2{
+        font-size: 20px;
+    }
+}
+
+@media(max-width: 550px){
+    .switch {
+        width: 36px;
+        height: 25px;
+    }
+
+    .slider:before {
+        height: 16px;
+        width: 16px;  
+    }
+
+    input:checked+.slider:before {
+        -webkit-transform: translateX(12px);
+        -ms-transform: translateX(12px);
+        transform: translateX(12px);
+    }
+}
+
+@media(max-width: 420px){
+    .pd{
+        padding: 15px 10px 15px 10px;
+    }
+
+    h1{
+        font-size: 22px;
+    }
+
+    h2{
+        font-size: 18px;
+    }
+}

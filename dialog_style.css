@@ -1,0 +1,101 @@
+
+#dialog {
+    background-color: #082029;
+    color: white;
+    position: fixed;
+    border-radius: 10px;
+    border-style: solid 1px white;
+}
+
+.dialog-full-content{
+    padding: 40px;
+}
+
+#dialog::backdrop {
+    backdrop-filter: blur(20px);
+}
+
+.dialog-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    align-items: center;
+}
+
+.dialog-header h2{
+    padding-left: 0;
+}
+
+#dialog_close_icon{
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.dialog-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 500px;
+}
+
+.dialog-input {
+    display: flex;
+    justify-content: space-between;
+}
+
+.dialog-input input {
+    background-color: rgba(255, 255, 255, 0.144);
+    border: none;
+    border-bottom: solid 2px #6FB6D1;
+    color: white;
+    height: 30px;
+    padding-left: 5px;
+    width: 300px;
+}
+
+.dialog-input textarea{
+    background-color: rgba(255, 255, 255, 0.144);
+    border: none;
+    border-bottom: solid 2px #6FB6D1;
+    color: white;
+    padding-left: 5px;
+    width: 300px;
+    font-family: 'Roboto', sans-serif;;
+    padding-top: 5px;
+}
+
+#year_input, #price_input{
+    width: 60px;
+}
+
+.add-btn-div{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+#add_btn{
+    background-color: white;
+    color: #082029;
+    padding: 10px;
+    width: 100px;
+    border-radius: 10px;
+}
+
+#add_btn:hover{
+    scale: 1.05;
+}
+
+.dialog-msg{
+    text-align: center;
+}
+
+.d-none{
+    display: none;
+}
+
+.showMsg{
+    display: block;
+}

@@ -1,4 +1,4 @@
-function getBookTemplate(indexBook) {
+function getBookTemplate(indexBook, mobileMode) {
     let bookShelf = document.getElementById('book_shelf');
     let bookPrice = styledBookPrice(indexBook);
 
@@ -40,11 +40,9 @@ function getBookTemplate(indexBook) {
     <div id="comments" class="pd">
                         <h3>Kommentare:</h3>
                         <div id="comment_table_div">
-                            <table id="comment_table">
-                                <tbody id="comment_table_body_${indexBook}">
-                                    
-                                </tbody>
-                            </table>
+                            <div id="comment_table_${indexBook}">
+                                
+                            </div>
                         </div>
                         <div id="write_comment_div">
                             <input id="comment_input_${indexBook}" class="comment-input" type="text" placeholder="Schreibe einen Kommentar...">
@@ -56,6 +54,18 @@ function getBookTemplate(indexBook) {
 
     getComments(indexBook);
     isLiked(indexBook);
-
 }
+
+function getComments(indexBook) {
+    let commentTableBody = document.getElementById(`comment_table_${indexBook}`);
+    commentTableBody.innerHTML = "";
+    for (let commentNr = 0; commentNr < books[indexBook].comments.length; commentNr++) {
+        commentTableBody.innerHTML += /*html*/ `  
+            <div id="comment_block">
+                <div id="comment_author">[${books[indexBook].comments[commentNr].name}]</div>
+                <div id="comment">${books[indexBook].comments[commentNr].comment}</div>
+            </div>`;
+    }
+}
+
 
