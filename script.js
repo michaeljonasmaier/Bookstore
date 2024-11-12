@@ -56,14 +56,16 @@ function updateLikeNumber(indexBook, number) {
 function addComment(indexBook) {
     let commentInput = document.getElementById(`comment_input_${indexBook}`)
     let commentValue = commentInput.value;
-    let valueObj = {
-        "name": "Michi",
-        "comment": commentValue,
-    }
-    books[indexBook].comments.unshift(valueObj);
-    getComments(indexBook, books);
-    commentInput.value = "";
-    safeToLocalStorage();
+    if(commentValue!=''){
+        let valueObj = {
+            "name": "Michi",
+            "comment": commentValue,
+        }
+        books[indexBook].comments.unshift(valueObj);
+        getComments(indexBook, books);
+        commentInput.value = "";
+        safeToLocalStorage();
+    }  
 }
 
 function reloadLikedBooks() {
@@ -148,7 +150,9 @@ function openDialog() {
 }
 
 function closeDialog() {
-    clearDialog()
+    clearDialog();
+    document.getElementById("liked_books_checkbox").setAttribute("onclick", "renderLikedBooksOnly()");
+    document.getElementById("liked_books_checkbox").checked = false;
     document.getElementById("dialog").close();
     render();
 }
@@ -166,4 +170,10 @@ function clearDialog(){
     document.getElementById("genre_input").value = "";
     document.getElementById("price_input").value = "";
     document.getElementById("comment_input").value = "";
+}
+
+function deleteBook(indexBook){
+    books.splice(indexBook, 1);
+    safeToLocalStorage();
+    render();
 }

@@ -4,7 +4,10 @@ function getBookTemplate(indexBook, mobileMode) {
 
     bookShelf.innerHTML += /*html*/`<div id="book_item">
     <div id="book_title">
-        <h2>${books[indexBook].name}</h2>
+        <div class="item-header">
+            <h2>${books[indexBook].name}</h2>
+            <button onclick="deleteBook(${indexBook})"><img class="minus-btn-img" src="./img/minus.png" alt=""></button> 
+        </div>
     </div>
     <div id="book_img">
         <img src="./img/buch.png" alt="Book Cover">
@@ -45,8 +48,8 @@ function getBookTemplate(indexBook, mobileMode) {
                             </div>
                         </div>
                         <div id="write_comment_div">
-                            <input id="comment_input_${indexBook}" class="comment-input" type="text" placeholder="Schreibe einen Kommentar...">
-                            <button id="comment_btn" onclick="addComment(${indexBook})"><img id="btn_img"
+                            <input id="comment_input_${indexBook}" class="comment-input" type="text" placeholder="Schreibe einen Kommentar..." onclick="bubblingProtection(event)">
+                            <button id="comment_btn" onclick="addComment(${indexBook}), bubblingProtection(event)"><img id="btn_img"
                                     src="./img/papierflieger.png" alt="Senden Button"></button>
                         </div>
 

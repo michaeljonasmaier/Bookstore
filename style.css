@@ -1,11 +1,29 @@
+.full-content{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .main-content {
-    margin: 0 100px 100px 100px;
+    padding: 0 100px 100px 100px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
 }
 
 header {
-    background-color: #082029;
+    background-color: #082029; 
+}
+
+.header-content{
     padding: 10px 100px 10px 100px;
     text-align: center;
+}
+
+.max-width {
+    max-width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .navigation {
@@ -17,8 +35,14 @@ header {
     margin-bottom: 30px;
 }
 
+.navigation-elements{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
 #plus_btn {
-    width: 50px;
+    width: 40px;
     margin-right: 20px;
 }
 
@@ -37,6 +61,22 @@ header {
     background-color: #0D3240;
     border-radius: 15px;
     width: 400px;
+}
+
+.item-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+}
+
+.minus-btn-img{
+    height: 30px;
+    object-fit: fill;
+}
+
+.minus-btn-img:hover{
+    scale: 1.05;
 }
 
 #book_img {
@@ -157,19 +197,49 @@ header {
     height: 20px;
 }
 
+footer {
+    background-color: #082029; 
+}
+
+.footer-content{
+    padding: 30px 100px 30px 100px;
+    text-align: center;
+}
+
 
 /*-------------------------------------------------------------------- RESPONSIVENESS------------------------------------------------------------------------------- */
 
 
 @media(max-width: 720px) {
     .main-content {
-        margin: 50px;
+        padding: 50px;
+    }
+
+    .header-content{
+        padding: 10px 50px 10px 50px;
+    }
+
+    .navigation {
+        justify-content: space-between;
     }
 }
 
 @media(max-width: 550px) {
     .main-content {
-        margin: 20px;
+        padding: 20px;
+    }
+
+    .header-content{
+        padding: 10px 20px 10px 20px;
+    }
+
+    .navigation-elements{
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    
+    #plus_btn{
+        margin: 0;
     }
 
     header {
@@ -177,7 +247,15 @@ header {
     }
 }
 
+@media(max-width: 450px){
+    #book_item{
+        width: 100%;
+    }
+}
+
 @media(max-width: 420px) {
+    
+
     #comment_block {
         flex-direction: column;
     }

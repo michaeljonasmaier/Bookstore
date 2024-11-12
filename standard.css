@@ -4,12 +4,12 @@ body {
     color: white;
     font-family: 'Roboto', sans-serif;
     line-height: 1.3;
+    
 }
 
 h2 {
     text-align: center;
     margin: 0;
-    padding: 15px;
 }
 
 p,
@@ -19,6 +19,11 @@ h3 {
 
 h3 {
     padding-bottom: 10px;
+}
+
+a{
+    text-decoration: none;
+    color: white;
 }
 
 .pd {
@@ -99,24 +104,6 @@ button{
 
     h2{
         font-size: 20px;
-    }
-}
-
-@media(max-width: 550px){
-    .switch {
-        width: 36px;
-        height: 25px;
-    }
-
-    .slider:before {
-        height: 16px;
-        width: 16px;  
-    }
-
-    input:checked+.slider:before {
-        -webkit-transform: translateX(12px);
-        -ms-transform: translateX(12px);
-        transform: translateX(12px);
     }
 }
 
