@@ -65,7 +65,7 @@ function getComments(indexBook) {
     for (let commentNr = 0; commentNr < books[indexBook].comments.length; commentNr++) {
         commentTableBody.innerHTML += /*html*/ `  
             <div id="comment_block">
-                <div id="comment_author">[${books[indexBook].comments[commentNr].name}]</div>
+                <div id="comment_author">${books[indexBook].comments[commentNr].name}</div>
                 <div id="comment">${books[indexBook].comments[commentNr].comment}</div>
             </div>`;
     }

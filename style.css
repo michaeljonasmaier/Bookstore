@@ -35,10 +35,11 @@ header {
     margin-bottom: 30px;
 }
 
-.navigation-elements{
+.navigation-element{
     display: flex;
     align-items: center;
     gap: 10px;
+    height: 70px;
 }
 
 #plus_btn {
@@ -156,6 +157,7 @@ header {
 
 #comment_author {
     width: 140px;
+    font-weight: 700;
 }
 
 #comment {
@@ -233,7 +235,7 @@ footer {
         padding: 10px 20px 10px 20px;
     }
 
-    .navigation-elements{
+    .navigation-element{
         flex-direction: column;
         justify-content: space-between;
     }
@@ -242,9 +244,7 @@ footer {
         margin: 0;
     }
 
-    header {
-        padding: 10px 50px 10px 50px;
-    }
+   
 }
 
 @media(max-width: 450px){
@@ -254,13 +254,7 @@ footer {
 }
 
 @media(max-width: 420px) {
-    
-
     #comment_block {
         flex-direction: column;
-    }
-
-    #comment_author {
-        font-weight: 600;
     }
 }

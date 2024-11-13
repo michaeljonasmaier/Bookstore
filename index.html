@@ -28,12 +28,12 @@
 
         <div class="main-content max-width">
             <div class="navigation">
-                <div class="navigation-elements">
+                <div class="navigation-element">
                     <p id="navigation_text">Add book</p>
                     <button onclick="openDialog(), bubblingProtection(event)"><img id="plus_btn" src="./img/plus.png"
                         alt=""></button>
                 </div>        
-                <div class="navigation-elements">
+                <div class="navigation-element">
                     <p id="navigation_text">Show favorite books only</p>
                     <label class="switch" onclick="bubblingProtection(event)">
                         <input id="liked_books_checkbox" type="checkbox" unchecked onclick="renderLikedBooksOnly()">
@@ -80,7 +80,7 @@
                     </div>
 
                     <div class="dialog_msg">
-                        <p id="warning" class="d-none">Bitte gib einen Titel und einen Autor/eine Autorin ein.</p>
+                        <p id="warning" class="d-none">Bitte mache vollständige Angaben zum Buch.</p>
                         <p id="adding_complete" class="d-none">Das Buch wurde erfolgreich hinzugefügt.</p>
                     </div>
                 </div>

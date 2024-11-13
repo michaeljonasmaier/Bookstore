@@ -8,7 +8,6 @@ function render() {
     for (let index = 0; index < books.length; index++) {
         getBookTemplate(index,);
     }
-
     showAllBooks = false;
     document.getElementById("liked_books_checkbox").setAttribute("onclick", "renderLikedBooksOnly()")
 }
@@ -100,9 +99,6 @@ function getFromLocalStorage() {
 }
 
 function addBook(){
-    //document.getElementById("#warning").classList.remove("showMsg");
-    //document.getElementById("#adding_complete").classList.remove("showMsg");
-
     let newTitle = document.getElementById("name_input").value;
     let newAuthor = document.getElementById("author_input").value;
     let newYear = document.getElementById("year_input").value;
@@ -110,14 +106,13 @@ function addBook(){
     let newPrice = document.getElementById("price_input").value;
     let newComment = document.getElementById("comment_input").value;
 
-    if(newTitle == "" || newAuthor == ""){
+    if(newTitle == "" || newAuthor == "" || newYear == "" || newGenre == "" || newPrice == ""){
         document.getElementById("warning").classList.add("showMsg");
     } else {   
-        document.getElementById("warning").classList.remove("showMsg");
         addBookToArray(newTitle, newAuthor, newYear, newGenre, newPrice, newComment)
-        document.getElementById("adding_complete").classList.add("showMsg");
+        safeToLocalStorage();
+        closeDialog();
     }
-    
 }
 
 function addBookToArray(newTitle, newAuthor, newYear, newGenre, newPrice, newComment){

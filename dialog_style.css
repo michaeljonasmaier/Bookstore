@@ -99,3 +99,42 @@
 .showMsg{
     display: block;
 }
+
+@media(max-width: 650px){
+    #dialog{
+        width: 90%;
+    }
+
+    .dialog-content{
+        width: 100%;
+    }
+}
+
+@media(max-width: 550px){
+    .dialog-input input {
+        width: 200px;
+    }
+
+    .dialog-input textarea {
+        width: 200px;
+    }
+}
+
+@media(max-width: 450px){
+    .dialog-full-content{
+        padding: 20px;
+    }
+
+    .dialog-input{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .dialog-input input {
+        width: 100%;
+    }
+
+    .dialog-input textarea {
+        width: 100%;
+    }
+}
