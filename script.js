@@ -32,20 +32,31 @@ function toggleLike(indexBook) {
     let isLiked = books[indexBook].liked;
     let likeImg = document.getElementById(`book_like_btn_img_${indexBook}`);
     if (books[indexBook].liked) {
-        numberLikes--;
-        isLiked = false;
-        likeImg.src = "./img/herz_weiss.png";
-        updateLikeNumber(indexBook, -1);
+        dislikeBook(numberLikes, isLiked, likeImg, indexBook)
     } else {
-        numberLikes++;
-        isLiked = true;
-        likeImg.src = "./img/herz.png";
-        updateLikeNumber(indexBook, 1);
+        likeBook(numberLikes, isLiked, likeImg, indexBook)
     }
-    books[indexBook].likes = numberLikes;
-    books[indexBook].liked = isLiked;
+    
     reloadLikedBooks();
     safeToLocalStorage();
+}
+
+function dislikeBook(numberLikes, isLiked, likeImg, indexBook) {
+    numberLikes--;
+    isLiked = false;
+    likeImg.src = "./img/herz_weiss.png";
+    updateLikeNumber(indexBook, -1);
+    books[indexBook].likes = numberLikes;
+    books[indexBook].liked = isLiked;
+}
+
+function likeBook(numberLikes, isLiked, likeImg, indexBook){
+    numberLikes++;
+    isLiked = true;
+    likeImg.src = "./img/herz.png";
+    updateLikeNumber(indexBook, 1);
+    books[indexBook].likes = numberLikes;
+    books[indexBook].liked = isLiked;
 }
 
 function updateLikeNumber(indexBook, number) {
@@ -55,7 +66,7 @@ function updateLikeNumber(indexBook, number) {
 function addComment(indexBook) {
     let commentInput = document.getElementById(`comment_input_${indexBook}`)
     let commentValue = commentInput.value;
-    if(commentValue!=''){
+    if (commentValue != '') {
         let valueObj = {
             "name": "Michi",
             "comment": commentValue,
@@ -64,7 +75,7 @@ function addComment(indexBook) {
         getComments(indexBook, books);
         commentInput.value = "";
         safeToLocalStorage();
-    }  
+    }
 }
 
 function reloadLikedBooks() {
@@ -98,7 +109,7 @@ function getFromLocalStorage() {
     }
 }
 
-function addBook(){
+function addBook() {
     let newTitle = document.getElementById("name_input").value;
     let newAuthor = document.getElementById("author_input").value;
     let newYear = document.getElementById("year_input").value;
@@ -106,16 +117,16 @@ function addBook(){
     let newPrice = document.getElementById("price_input").value;
     let newComment = document.getElementById("comment_input").value;
 
-    if(newTitle == "" || newAuthor == "" || newYear == "" || newGenre == "" || newPrice == ""){
+    if (newTitle == "" || newAuthor == "" || newYear == "" || newGenre == "" || newPrice == "") {
         document.getElementById("warning").classList.add("showMsg");
-    } else {   
+    } else {
         addBookToArray(newTitle, newAuthor, newYear, newGenre, newPrice, newComment)
         safeToLocalStorage();
         closeDialog();
     }
 }
 
-function addBookToArray(newTitle, newAuthor, newYear, newGenre, newPrice, newComment){
+function addBookToArray(newTitle, newAuthor, newYear, newGenre, newPrice, newComment) {
     let newBookObj = {
         "name": newTitle,
         "author": newAuthor,
@@ -125,17 +136,17 @@ function addBookToArray(newTitle, newAuthor, newYear, newGenre, newPrice, newCom
         "publishedYear": parseInt(newYear),
         "genre": newGenre,
         "comments": [
-          {
-            "name": "",
-            "comment": ""
-          }
+            {
+                "name": "",
+                "comment": ""
+            }
         ]
-      }
+    }
 
-      if(newComment != ''){
+    if (newComment != '') {
         newBookObj.comments[0].name = "Michi";
         newBookObj.comments[0].comment = newComment;
-      }
+    }
 
     books.unshift(newBookObj);
 }
@@ -152,11 +163,11 @@ function closeDialog() {
     render();
 }
 
-function bubblingProtection(event){
+function bubblingProtection(event) {
     event.stopPropagation();
 }
 
-function clearDialog(){
+function clearDialog() {
     document.getElementById("warning").classList.remove("showMsg");
     document.getElementById("adding_complete").classList.remove("showMsg");
     document.getElementById("name_input").value = "";
@@ -167,7 +178,7 @@ function clearDialog(){
     document.getElementById("comment_input").value = "";
 }
 
-function deleteBook(indexBook){
+function deleteBook(indexBook) {
     books.splice(indexBook, 1);
     safeToLocalStorage();
     render();

@@ -120,7 +120,7 @@
     }
 }
 
-@media(max-width: 450px){
+@media(max-width: 460px){
     .dialog-full-content{
         padding: 20px;
     }

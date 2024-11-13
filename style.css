@@ -141,6 +141,7 @@ header {
     scrollbar-color: #68B2CB #07171E;
     scrollbar-width: thin;
     overflow: auto;
+    word-break: break-word;
 }
 
 #comment_table {
@@ -247,7 +248,7 @@ footer {
    
 }
 
-@media(max-width: 450px){
+@media(max-width: 460px){
     #book_item{
         width: 100%;
     }
